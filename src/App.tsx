@@ -40,6 +40,7 @@ export default class App extends React.Component<Props, {}>{
         const data = Buffer.from(ian);
         const hash = await Hash.of(data);
         console.log("import image data hash: " + hash); // QmWFFQkkxxg4WgSJG6zvJR5wD4uM8jbPCWhfoEsppDPKjw
+        console.log("ipfs-desktop hash: " + "QmYHzA8euDgUpNy3fh7JRwpPwt6jCgF35YTutYkyGGyr8f"); // QmWFFQkkxxg4WgSJG6zvJR5wD4uM8jbPCWhfoEsppDPKjw
 
         // ipfs-desktop gives CID: QmYHzA8euDgUpNy3fh7JRwpPwt6jCgF35YTutYkyGGyr8f
     }
