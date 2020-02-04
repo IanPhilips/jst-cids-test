@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import ian from "./23196210.jpg";
+// import ian from "./23196210.jpg";
 const Hash = require('ipfs-only-hash');
 
 type Props = {
@@ -10,8 +10,8 @@ type Props = {
 export default class App extends React.Component<Props, {}>{
 
     async testHashes() {
-        const url = "https://avatars0.githubusercontent.com/u/23196210?s=460&v=4";
-        const toDataURL = fetch(url)
+        const url = "https://raw.githubusercontent.com/IanPhilips/jst-cids-test/master/src/23196210.jpg";
+        fetch(url)
             .then(response => response.blob())
             .then(blob => new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -23,7 +23,7 @@ export default class App extends React.Component<Props, {}>{
                 const strData = dataUrl as string;
                 const data = Buffer.from(strData);
                 const hash = await Hash.of(data);
-                console.log("fetch data hash: " + hash); // QmQAawPBfrhUsMMN7bCAVDHgm47NdpTsxGjMiVvtddoFo1
+                console.log("fetch data CID: " + hash); // QmQAawPBfrhUsMMN7bCAVDHgm47NdpTsxGjMiVvtddoFo1
                 // visualize the image to make sure we've got the right data
                 let img = React.createElement(
                     "img",
@@ -37,12 +37,7 @@ export default class App extends React.Component<Props, {}>{
 
             });
 
-        const data = Buffer.from(ian);
-        const hash = await Hash.of(data);
-        console.log("import image data hash: " + hash); // QmWFFQkkxxg4WgSJG6zvJR5wD4uM8jbPCWhfoEsppDPKjw
-        console.log("ipfs-desktop hash: " + "QmYHzA8euDgUpNy3fh7JRwpPwt6jCgF35YTutYkyGGyr8f"); // QmWFFQkkxxg4WgSJG6zvJR5wD4uM8jbPCWhfoEsppDPKjw
-
-        // ipfs-desktop gives CID: QmYHzA8euDgUpNy3fh7JRwpPwt6jCgF35YTutYkyGGyr8f
+        console.log("ipfs-desktop CID: QmYHzA8euDgUpNy3fh7JRwpPwt6jCgF35YTutYkyGGyr8f");
     }
     constructor(props:Props) {
         super(props);
