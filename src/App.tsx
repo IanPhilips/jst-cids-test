@@ -21,20 +21,12 @@ export default class App extends React.Component<Props, {}>{
             })).then(async dataUrl =>{
 
                 const strData = dataUrl as string;
-                const data = Buffer.from(strData);
+                // remove "data:*/*;base64," from dataUrl
+                const endOfPrefix = strData.indexOf(",");
+                const cleanStrData = strData.slice(endOfPrefix+1);
+                const data = Buffer.from(cleanStrData, "base64");
                 const hash = await Hash.of(data);
-                console.log("fetch data CID: " + hash); // QmQAawPBfrhUsMMN7bCAVDHgm47NdpTsxGjMiVvtddoFo1
-                // visualize the image to make sure we've got the right data
-                let img = React.createElement(
-                    "img",
-                    {
-                        src: strData,
-                    },
-                )
-                this.setState({
-                    image:img
-                })
-
+                console.log("fetch data CID: " + hash); // QmYHzA8euDgUpNy3fh7JRwpPwt6jCgF35YTutYkyGGyr8f
             });
 
         console.log("ipfs-desktop CID: QmYHzA8euDgUpNy3fh7JRwpPwt6jCgF35YTutYkyGGyr8f");
